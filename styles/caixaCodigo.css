@@ -1,0 +1,42 @@
+.caixa-codigo{
+
+
+    width: 500px;
+
+    background-color: black;
+
+    color: green;
+
+    border-radius: 4px;
+
+    margin-top: 2%;
+
+    overflow: hidden;
+
+}
+
+.caixa-codigo > pre{
+
+    padding: 2%;
+
+    
+
+}
+
+.borda{
+
+    background-color: grey;
+
+    width: 100%;
+
+    border-top-right-radius: 4px 4px;
+
+    border-top-left-radius: 4px 4px;
+
+    color: white;
+
+    padding: 1%;
+
+    
+
+}
