@@ -1,4 +1,4 @@
-import { rejects } from "assert";
+
 import * as fs from "fs";
 
 
@@ -34,7 +34,7 @@ export class RecuperaCodigoDeAlgoritmos{
     
                 if(erro){
     
-                    reject( new Error("Erro nos diretorios: " + erro));
+                    reject(erro);
     
                 }
 
@@ -88,7 +88,7 @@ export class RecuperaCodigoDeAlgoritmos{
         }
 
     
-        resultado = diretorios[i];
+        resultado = this.diretorio + diretorios[i];
         
         return resultado;
     } 
@@ -99,37 +99,57 @@ export class RecuperaCodigoDeAlgoritmos{
 
         let resultado: string[] = [];
 
+
         await this.lerDiretorios(diretorioPrincipal)
         .then((resul) => {
     
+            
             resul.forEach(element => {
+
                 
-                resultado.push(diretorioPrincipal + element);
+                resultado.push(diretorioPrincipal + "/" + element);
     
             });
     
-        })
+        });
         
         return resultado;
 
     }
 
-    private async lerArquivo(diretorioArquivo: string[]): Promise<string>{
+
+
+    //Lê de forma sincrona.
+    private async lerArquivos(diretoriosArquivo: string[]): Promise<string[][]>{
         
         return new Promise((resolve, reject) => {
 
-            fs.readFile(diretorioArquivo, "utf8", (erro, dados) => {
-    
-                if(erro) reject(new Error("Erro no arquivo: " + erro));
-                else{
+            let resposta: string[][] = [];
 
-                    resolve(dados);
+            diretoriosArquivo.forEach(element => {
 
-                }
+
+                //Recupera o nome do arquivo por meio do seu caminho.
+                function fazONome() {
+                    
+                    let diretorioQuebrado:string[] = element.split("/");
+                    
+                    return diretorioQuebrado[diretorioQuebrado.length - 1];
+                    
+                };
+                
+                let nomeArquivo: string = fazONome();
+
+                let conteudo: string = fs.readFileSync(element, "utf-8");
+
+
+                resposta.push([nomeArquivo, conteudo]);
+
 
             })
 
-
+            resolve(resposta);
+            
         })
 
         
@@ -137,53 +157,60 @@ export class RecuperaCodigoDeAlgoritmos{
         
     }
 
-    private async recuperaCodigos(diretorio: string): Promise<string[]>{
+    private async recuperaCodigos(diretorio: string): Promise<string[][]>{
 
-        let resultado: string[] = [];
+        let resultado: string[][] = [];
 
         let diretoriosASeremLidos: string[] = [];
 
 
 
-        await this.recuperaDiretoriosCodigos(diretorio)
-        .then((resultados) => {
+        try{
+            
+            diretoriosASeremLidos = await this.recuperaDiretoriosCodigos(diretorio);
 
-            diretoriosASeremLidos = resultados;
-
-        })
+            resultado = await this.lerArquivos(diretoriosASeremLidos);
 
 
-        await this.lerArquivos(diretoriosASeremLidos)
-        .then((resposta) => {
+        }catch(erro){
 
-            resultado = resposta;
+            throw erro;
+            
+        }
 
-        })
+
+
+
+
+        
+
 
 
         return resultado;
     }
 
-    private async lerCodigos(): Promise<string[]>{
+    private async lerCodigos(): Promise<string[][]>{
 
-        let resultado : string[] = [];
+        let resultado : string[][] = [];
     
         let diretorioAProcurar: string = "";
 
-        await this.procuraDiretorioCodigo()
-        .then((diretorio) => {
 
-            diretorioAProcurar = this.diretorio + diretorio;
-
-        })
 
         
-        await this.recuperaCodigos(diretorioAProcurar)
-        .then((codigos) => {
+        
+        try{
+            diretorioAProcurar = await this.procuraDiretorioCodigo();
 
-            resultado = codigos;
+            resultado = await this.recuperaCodigos(diretorioAProcurar);
 
-        })
+
+        }catch(erro){
+
+            throw erro;
+
+        }
+        
         
 
         return resultado;
@@ -191,11 +218,24 @@ export class RecuperaCodigoDeAlgoritmos{
     }
 
     
-    public recupera(): string[][]{
+    public async recupera(): Promise<string[][]>{
 
-        this.lerCodigos();
+        let resultado: string[][] = [];
 
-        return [["ola", "ola"], []]
+
+        try{
+
+            resultado = await this.lerCodigos();
+
+        }catch(erro){
+
+            throw erro;
+            
+        }
+
+
+
+        return resultado;
 
     }
 
@@ -212,7 +252,3 @@ export class RecuperaCodigoDeAlgoritmos{
 
 }
 
-
-let recuper = new RecuperaCodigoDeAlgoritmos("../../algoritimos/BubbleSort/");
-
-recuper.recupera();
