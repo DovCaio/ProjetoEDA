@@ -1,7 +1,7 @@
 .caixa-codigo{
 
 
-    width: 500px;
+    width: 100%;
 
     background-color: black;
 
@@ -38,5 +38,11 @@
     padding: 1%;
 
     
+
+}
+
+#onde-imbui-elemento{
+
+    width: 100%;
 
 }

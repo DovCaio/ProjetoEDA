@@ -11,19 +11,20 @@ import * as fs from "fs";
 */
 
 
-export class RecuperaCodigoDeAlgoritmos{
+export class RecuperaCodigo{
 
     private diretorio: string;
 
     private qualCodigo: number;
 
 
-    constructor(diretorio: string){
+    constructor(diretorio: string, idCodigo:number){
 
         this.diretorio = diretorio;
-        this.qualCodigo = 0;
+        this.qualCodigo = idCodigo;
         
     }
+
 
     private lerDiretorios(diretorio:string): Promise<string[]> {
   
@@ -246,6 +247,12 @@ export class RecuperaCodigoDeAlgoritmos{
             this.qualCodigo = idCod;
 
         }
+
+    }
+
+    public setDiretorio(diretorio: string){
+
+        this.diretorio = diretorio
 
     }
 

@@ -37,15 +37,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var RecuperaCodigoDeAlgoritmos_1 = require("./objetos/RecuperaCodigoDeAlgoritmos");
+var RecuperaCodigo_1 = require("./objetos/RecuperaCodigo");
+var cors = require("cors");
+var recuperaCodigo = new RecuperaCodigo_1.RecuperaCodigo("", 0);
 var app = express();
 var porta = 3000;
-app.get("/algoritmo/:id", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var recuperaCodigo, idCodigo, _a, _b;
+app.use(cors()); //Dessa forma permitimos que qualquer origem acessa a api
+// ou para permitir apenas de uma origem específica:
+// app.use(cors({ origin: 'http://192.168.0.104:8080' }));
+app.get("/algoritmoBubbleSort/:id", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var idCodigo, _a, _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
-                recuperaCodigo = new RecuperaCodigoDeAlgoritmos_1.RecuperaCodigoDeAlgoritmos("algoritimos/BubbleSort/");
+                recuperaCodigo.setDiretorio("algoritimos/BubbleSort/");
                 idCodigo = parseInt(req.params.id);
                 recuperaCodigo.setQualCodigo(idCodigo);
                 _b = (_a = res).send;

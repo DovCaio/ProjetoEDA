@@ -28,9 +28,11 @@ export class CreateCaixaCodigo {
         caixaPrincipal.appendChild(borda);
         caixaPrincipal.appendChild(pre);
 
+        let envelopeDoElemento = document.createElement("div");
+        envelopeDoElemento.appendChild(caixaPrincipal);
 
 
-        return caixaPrincipal;
+        return envelopeDoElemento;
 
     }
 
