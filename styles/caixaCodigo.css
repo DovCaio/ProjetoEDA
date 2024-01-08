@@ -3,7 +3,7 @@
 
     width: 100%;
 
-    background-color: #00000f;
+    background-color: #464d70;
 
     color: white;
 
@@ -13,6 +13,8 @@
 
     overflow: hidden;
 
+
+    
 }
 
 .caixa-codigo > pre{
@@ -44,5 +46,54 @@
 #onde-imbui-elemento{
 
     width: 100%;
+
+}
+
+
+.area-submissao {
+
+
+    width: 100%;
+    
+    
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    
+    
+}
+
+.area-submissao > input {
+    
+    padding: 15px;
+    border-radius: 50px;
+    background-color: white;
+    width: 98%;
+    font-size: large;
+    
+}
+
+.area-submissao > pre{
+    
+    background-color: #757575;
+    
+    
+}
+
+.area-submissao > * {
+
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+}
+
+.area-submissao > button {
+
+    padding: 10px;
+    width: 50%;
+    border-radius: 50px;
+    text-transform: uppercase;
+    background-color: #a1ac88;
 
 }

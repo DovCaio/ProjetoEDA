@@ -2,34 +2,91 @@
 
 export class CreateCaixaCodigo {
 
+    /**
+     * @returns Retorna os elementos que compõem o titulo, aninhados. 
+     */
+    private criarAreaTituloCodigo(nomeAlgoritmo:string): HTMLDivElement{
 
-    public criarElemento(nomeAlgoritmo: string, codigo: string) : HTMLElement {
-
-        //Cria a borda que contém o nome do algoritmo.
-        let borda = document.createElement("div");
+        let borda: HTMLDivElement = document.createElement("div");
         borda.className = "borda";
-        let span = document.createElement("span");
+        let span: HTMLSpanElement = document.createElement("span");
 
-        //Cria o elemento em que todo o código vai permanecer.
-        let caixaPrincipal = document.createElement("div");
-        caixaPrincipal.className = "caixa-codigo";
 
-        //Coloca o nome do algoritmo no span.
         borda.appendChild(span);
         span.innerHTML = nomeAlgoritmo;
 
-        //Cria os elementos em que todo o código vai ficar e coloca o código dentro.
-        let pre = document.createElement("pre");
-        let code = document.createElement("code");
+        return borda
+    }
+
+
+    /**
+     * 
+     * @param codigo Código o qual vai ser escrito no elemento code 
+     * 
+     * 
+     * @returns elemento pre contendo o código.
+     */
+    private areaCodigo(codigo:string): HTMLPreElement{
+
+        let pre: HTMLPreElement= document.createElement("pre");
+        let code: HTMLElement = document.createElement("code");
         pre.appendChild(code);
         code.innerHTML = codigo;
 
-        //Coloca todos os elementos dentro da caixa principal.
+        return pre;
+
+    }
+
+
+
+    /**
+     * 
+     * @param nomeAlgoritmo Nome que vai servir para localizar os elementos das respecitivas áreas 
+     * @returns Os elemento que serão usados para a submissão
+     */
+
+
+    private criarAreaSubimsao(nomeAlgoritmo: string): HTMLDivElement{
+        let elementoEmpacotador:HTMLDivElement = document.createElement("div");
+        elementoEmpacotador.className = "area-submissao"
+
+        let input: HTMLElement = document.createElement("input");
+        input.id = nomeAlgoritmo.toLowerCase() + "-" + "input"
+
+        let botaoSubmeter: HTMLElement = document.createElement("button");
+        botaoSubmeter.id = nomeAlgoritmo.toLowerCase() + "-" + "button";
+        botaoSubmeter.textContent = "Submeter";
+
+        let resultadoSubmissao: HTMLElement = document.createElement("pre");
+        resultadoSubmissao.id = nomeAlgoritmo.toLowerCase() + "-" + "pre"
+
+
+        elementoEmpacotador.appendChild(input);
+        elementoEmpacotador.appendChild(botaoSubmeter);
+        elementoEmpacotador.appendChild(resultadoSubmissao);
+
+
+        return elementoEmpacotador;
+    }
+
+
+    public criarElemento(nomeAlgoritmo: string, codigo: string) : HTMLDivElement {
+
+        let caixaPrincipal: HTMLDivElement = document.createElement("div");
+        caixaPrincipal.className = "caixa-codigo";
+        
+        let borda: HTMLDivElement = this.criarAreaTituloCodigo(nomeAlgoritmo);
+        
+        let pre: HTMLPreElement = this.areaCodigo(codigo);
+
+        let areaSubmissao:HTMLDivElement = this.criarAreaSubimsao(nomeAlgoritmo);
+
         caixaPrincipal.appendChild(borda);
         caixaPrincipal.appendChild(pre);
-
+        
         let envelopeDoElemento = document.createElement("div");
         envelopeDoElemento.appendChild(caixaPrincipal);
+        envelopeDoElemento.appendChild(areaSubmissao);
 
 
         return envelopeDoElemento;
