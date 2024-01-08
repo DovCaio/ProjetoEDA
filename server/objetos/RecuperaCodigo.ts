@@ -121,11 +121,11 @@ export class RecuperaCodigo{
 
 
     //Lê de forma sincrona.
-    private async lerArquivos(diretoriosArquivo: string[]): Promise<string[][]>{
+    private async lerArquivos(diretoriosArquivo: string[]): Promise<Object[]>{
         
         return new Promise((resolve, reject) => {
 
-            let resposta: string[][] = [];
+            let resposta: Object[] = [];
 
             diretoriosArquivo.forEach(element => {
 
@@ -143,8 +143,14 @@ export class RecuperaCodigo{
 
                 let conteudo: string = fs.readFileSync(element, "utf-8");
 
+                let codigo = {
 
-                resposta.push([nomeArquivo, conteudo]);
+                    "nome": nomeArquivo,
+                    "conteudo": conteudo
+
+                }
+
+                resposta.push(codigo);
 
 
             })
@@ -158,9 +164,9 @@ export class RecuperaCodigo{
         
     }
 
-    private async recuperaCodigos(diretorio: string): Promise<string[][]>{
+    private async recuperaCodigos(diretorio: string): Promise<Object[]>{
 
-        let resultado: string[][] = [];
+        let resultado: Object[] = [];
 
         let diretoriosASeremLidos: string[] = [];
 
@@ -181,18 +187,12 @@ export class RecuperaCodigo{
 
 
 
-
-
-        
-
-
-
         return resultado;
     }
 
-    private async lerCodigos(): Promise<string[][]>{
+    private async lerCodigos(): Promise<Object[]>{
 
-        let resultado : string[][] = [];
+        let resultado : Object[] = [];
     
         let diretorioAProcurar: string = "";
 
@@ -219,9 +219,9 @@ export class RecuperaCodigo{
     }
 
     
-    public async recupera(): Promise<string[][]>{
+    public async recupera(): Promise<Object[]>{
 
-        let resultado: string[][] = [];
+        let resultado: Object[] = [];
 
 
         try{

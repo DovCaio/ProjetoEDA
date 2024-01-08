@@ -18,7 +18,7 @@ export class RequsitaAlgoritmos {
 
     }
 
-    public async fazRequisicao(): Promise<string[][]>{
+    public async fazRequisicao(): Promise<Object[]>{
 
         return await fetch(this.url)
         .then(resposta => {

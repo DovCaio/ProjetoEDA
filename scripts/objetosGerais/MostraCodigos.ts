@@ -1,3 +1,4 @@
+import { stringify } from "querystring";
 import { CreateCaixaCodigo } from "./CreateCaixaCodigo.js";
 import { RequsitaAlgoritmos } from "./RequisitaAlgoritmos.js";
 
@@ -24,7 +25,7 @@ export class MostraCodigos {
         let element: HTMLElement | null = document.getElementById("onde-imbui-elemento");
 
         if(element){
-            console.log(elemento);
+
             element.innerHTML += elemento.innerHTML;
 
         }
@@ -36,12 +37,15 @@ export class MostraCodigos {
 
     public async mostrar(): Promise<void>{
 
+        let algoritimos: Object[] = await this.fazRequisicoes.fazRequisicao();
 
-        let algoritimos: string[][] = await this.fazRequisicoes.fazRequisicao();
-        
+
         algoritimos.forEach(element => {
 
-            let elemento: HTMLElement = this.createCaixaCodigo.criarElemento(element[0], element[1]);
+            
+            let entries : string[] = Object.values(element);
+
+            let elemento: HTMLElement = this.createCaixaCodigo.criarElemento(entries[0], entries[1]);
             
             this.colocaElementoNaPagina(elemento);
         })
@@ -51,8 +55,3 @@ export class MostraCodigos {
 
 
 }
-
-
-
-
-

@@ -125,7 +125,11 @@ var RecuperaCodigo = /** @class */ (function () {
                             ;
                             var nomeArquivo = fazONome();
                             var conteudo = fs.readFileSync(element, "utf-8");
-                            resposta.push([nomeArquivo, conteudo]);
+                            var codigo = {
+                                "nome": nomeArquivo,
+                                "conteudo": conteudo
+                            };
+                            resposta.push(codigo);
                         });
                         resolve(resposta);
                     })];
