@@ -46,17 +46,27 @@ app.use(cors()); //Dessa forma permitimos que qualquer origem acessa a api
 // ou para permitir apenas de uma origem específica:
 // app.use(cors({ origin: 'http://192.168.0.104:8080' }));
 app.get("/algoritmoBubbleSort/:id", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var idCodigo, _a, _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
+    var idCodigo, resposta, erro_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
                 recuperaCodigo.setDiretorio("algoritimos/BubbleSort/");
                 idCodigo = parseInt(req.params.id);
                 recuperaCodigo.setQualCodigo(idCodigo);
-                _b = (_a = res).send;
-                return [4 /*yield*/, recuperaCodigo.recupera()];
+                resposta = [];
+                _a.label = 1;
             case 1:
-                _b.apply(_a, [_c.sent()]);
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, recuperaCodigo.recupera()];
+            case 2:
+                resposta = _a.sent();
+                return [3 /*break*/, 4];
+            case 3:
+                erro_1 = _a.sent();
+                console.log(erro_1);
+                return [3 /*break*/, 4];
+            case 4:
+                res.send(resposta);
                 return [2 /*return*/];
         }
     });

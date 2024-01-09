@@ -25,7 +25,19 @@ app.get("/algoritmoBubbleSort/:id", async (req: Request, res: Response) => {
     
     recuperaCodigo.setQualCodigo(idCodigo);
     
-    res.send(await recuperaCodigo.recupera());
+    let resposta: Object[] = [];
+
+    try {
+
+        resposta = await recuperaCodigo.recupera() 
+
+    }catch(erro){
+
+        console.log(erro);
+
+    }
+
+    res.send(resposta);
 
 })
 

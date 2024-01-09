@@ -102,6 +102,7 @@ export class CreateElementos {
         let botao = document.createElement("button");
 
         botao.textContent = "Carregar Mais";
+        botao.className = "button-carrega-mais"
 
         botao.onclick = () => {
             mostraCodigos.mostrar();

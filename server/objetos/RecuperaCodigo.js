@@ -78,13 +78,12 @@ var RecuperaCodigo = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         i = 0;
-                        console.log(diretorios);
-                        console.log(this.qualCodigo);
+                        if (this.qualCodigo > diretorios.length)
+                            throw new Error("Não existe esse codigo");
                         for (i; i < diretorios.length; i++) {
                             if ((this.qualCodigo - 1) == i)
                                 break;
                         }
-                        console.log(diretorios[i]);
                         resultado = this.diretorio + diretorios[i];
                         return [2 /*return*/, resultado];
                 }
