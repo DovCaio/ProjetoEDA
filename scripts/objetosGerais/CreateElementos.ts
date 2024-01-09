@@ -1,6 +1,7 @@
+import { MostraCodigos } from "./MostraCodigos";
 
 
-export class CreateCaixaCodigo {
+export class CreateElementos {
 
     /**
      * @returns Retorna os elementos que compõem o titulo, aninhados. 
@@ -70,7 +71,7 @@ export class CreateCaixaCodigo {
     }
 
 
-    public criarElemento(nomeAlgoritmo: string, codigo: string) : HTMLDivElement {
+    public criarCaixaCodigo(nomeAlgoritmo: string, codigo: string) : HTMLDivElement {
 
         let caixaPrincipal: HTMLDivElement = document.createElement("div");
         caixaPrincipal.className = "caixa-codigo";
@@ -84,13 +85,30 @@ export class CreateCaixaCodigo {
         caixaPrincipal.appendChild(borda);
         caixaPrincipal.appendChild(pre);
         
-        let envelopeDoElemento = document.createElement("div");
-        envelopeDoElemento.appendChild(caixaPrincipal);
-        envelopeDoElemento.appendChild(areaSubmissao);
+        caixaPrincipal.appendChild(areaSubmissao);
+
+        return caixaPrincipal;
+
+    }
 
 
-        return envelopeDoElemento;
+    public criaLinha(): HTMLHRElement{
 
+        return document.createElement("hr");
+    }
+
+    public criarButtonCarregarMais(mostraCodigos: MostraCodigos): HTMLButtonElement{
+
+        let botao = document.createElement("button");
+
+        botao.textContent = "Carregar Mais";
+
+        botao.onclick = () => {
+            mostraCodigos.mostrar();
+            mostraCodigos.removerElemento(botao);
+        }
+
+        return botao;
     }
 
 

@@ -6,9 +6,9 @@ class BubbleSort implements Algoritmo{
 
     private mostraCodigos: MostraCodigos; 
 
-    constructor(url: string){
+    constructor(url: string, id: number){
 
-        this.mostraCodigos = new MostraCodigos(url);
+        this.mostraCodigos = new MostraCodigos(url, id);
 
     }
 
@@ -22,5 +22,9 @@ class BubbleSort implements Algoritmo{
 }
 
 
-const bubbleSort = new BubbleSort("http://localhost:3000/algoritmoBubbleSort/1");
-bubbleSort.mostrar();
+const bubbleSort = new BubbleSort("http://localhost:3000/algoritmoBubbleSort/", 1);
+
+
+document.body.onload = () => {
+    bubbleSort.mostrar()
+};

@@ -60,6 +60,9 @@
     
     flex-direction: column;
     align-items: center;
+
+    padding-top: 5%;
+    background-color: #757575;
     
     
 }
@@ -69,7 +72,7 @@
     padding: 15px;
     border-radius: 50px;
     background-color: white;
-    width: 98%;
+    width: 95%;
     font-size: large;
     
 }
@@ -95,5 +98,19 @@
     border-radius: 50px;
     text-transform: uppercase;
     background-color: #a1ac88;
+
+}
+
+
+.area-submissao > button:hover{
+
+    text-decoration: underline;
+
+}
+
+
+hr{
+
+    border-color: #464d70;
 
 }

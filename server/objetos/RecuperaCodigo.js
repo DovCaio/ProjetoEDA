@@ -78,11 +78,13 @@ var RecuperaCodigo = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         i = 0;
+                        console.log(diretorios);
+                        console.log(this.qualCodigo);
                         for (i; i < diretorios.length; i++) {
-                            if (this.qualCodigo == i)
+                            if ((this.qualCodigo - 1) == i)
                                 break;
-                            i++;
                         }
+                        console.log(diretorios[i]);
                         resultado = this.diretorio + diretorios[i];
                         return [2 /*return*/, resultado];
                 }
@@ -211,7 +213,7 @@ var RecuperaCodigo = /** @class */ (function () {
         });
     };
     RecuperaCodigo.prototype.setQualCodigo = function (idCod) {
-        if (this.qualCodigo > 0) {
+        if (idCod > 0) {
             this.qualCodigo = idCod;
         }
     };

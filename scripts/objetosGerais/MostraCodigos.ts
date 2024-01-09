@@ -1,54 +1,88 @@
 import { stringify } from "querystring";
-import { CreateCaixaCodigo } from "./CreateCaixaCodigo.js";
+import { CreateElementos } from "./CreateElementos.js";
 import { RequsitaAlgoritmos } from "./RequisitaAlgoritmos.js";
 
 export class MostraCodigos {
 
 
-    private createCaixaCodigo: CreateCaixaCodigo;
+    private createElements: CreateElementos;
     private fazRequisicoes: RequsitaAlgoritmos;
-    
+    private ondeMostra: HTMLElement | null;
 
-    constructor(url:string){
+    constructor(url:string, id:number){
 
-        this.fazRequisicoes = new RequsitaAlgoritmos(url);
-        this.createCaixaCodigo = new CreateCaixaCodigo();
+        this.fazRequisicoes = new RequsitaAlgoritmos(url, id);
+        this.createElements = new CreateElementos();
+
+        this.ondeMostra = document.getElementById("onde-imbui-elemento");
 
     }
 
 
     private colocaElementoNaPagina(elemento:HTMLElement): void{
 
-        
+        if(this.ondeMostra){
 
-        //O null é por que caso o elemento não seja encontrado então ser retornado um valor null
-        let element: HTMLElement | null = document.getElementById("onde-imbui-elemento");
-
-        if(element){
-
-            element.innerHTML += elemento.innerHTML;
+            this.ondeMostra.appendChild(elemento);
 
         }
 
 
     }
 
+    public removerElemento(elemento:HTMLElement): void{
+
+        if(this.ondeMostra){
+
+            this.ondeMostra.removeChild(elemento);
+
+        }
+
+    }
 
 
-    public async mostrar(): Promise<void>{
+    private async exibirCaixasCodigos(): Promise<void>{
 
         let algoritimos: Object[] = await this.fazRequisicoes.fazRequisicao();
+        this.fazRequisicoes.setIdNext();
 
 
         algoritimos.forEach(element => {
 
             
-            let entries : string[] = Object.values(element);
+            let valores : string[] = Object.values(element);
 
-            let elemento: HTMLElement = this.createCaixaCodigo.criarElemento(entries[0], entries[1]);
+            let elemento: HTMLElement = this.createElements.criarCaixaCodigo(valores[0], valores[1]);
             
             this.colocaElementoNaPagina(elemento);
         })
+
+    }
+
+    private exibirLinhaHorizontal(): void{
+
+        let linha: HTMLHRElement = this.createElements.criaLinha();
+        this.colocaElementoNaPagina(linha);
+
+    }
+
+    private exibirBotaoCarregarMais(): void {
+
+        let botao: HTMLButtonElement = this.createElements.criarButtonCarregarMais(this);
+        this.colocaElementoNaPagina(botao);
+
+    }
+
+
+
+
+    public async mostrar(): Promise<void>{
+
+        await this.exibirCaixasCodigos();
+
+        this.exibirLinhaHorizontal();
+
+        this.exibirBotaoCarregarMais();
 
     }
     

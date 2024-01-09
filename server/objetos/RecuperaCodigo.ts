@@ -77,18 +77,24 @@ export class RecuperaCodigo{
 
 
         //Procura qual diretorio é apartir do id
-        let i: number = 0
+        let i: number = 0;
+        
+        
+        
+
+        if(this.qualCodigo > diretorios.length) throw new Error("Não existe esse codigo");
 
         for (i; i < diretorios.length; i++){
 
-            if (this.qualCodigo == i) break;
-
-            i++
-
+            
+            if ((this.qualCodigo - 1) == i) break;
+            
+            
 
         }
 
-    
+        
+
         resultado = this.diretorio + diretorios[i];
         
         return resultado;
@@ -242,7 +248,7 @@ export class RecuperaCodigo{
 
     public setQualCodigo(idCod: number){
 
-        if (this.qualCodigo > 0){
+        if (idCod > 0){
 
             this.qualCodigo = idCod;
 
