@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { Request, Response } from 'express';
-import { RecuperaCodigo } from "./objetos/RecuperaCodigo";
+import { RecuperaCodigo } from "./services/RecuperaCodigo";
 
 import * as cors from "cors";
 

@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var RecuperaCodigo_1 = require("./objetos/RecuperaCodigo");
+var RecuperaCodigo_1 = require("./services/RecuperaCodigo");
 var cors = require("cors");
 var recuperaCodigo = new RecuperaCodigo_1.RecuperaCodigo("", 0);
 var app = express();

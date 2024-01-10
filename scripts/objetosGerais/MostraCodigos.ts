@@ -79,11 +79,26 @@ export class MostraCodigos {
 
     public async mostrar(): Promise<void>{
 
-        await this.exibirCaixasCodigos();
+        let temMaisCodigo:boolean = true;
 
-        this.exibirLinhaHorizontal();
+        try {
 
-        this.exibirBotaoCarregarMais();
+            await this.exibirCaixasCodigos();
+
+        }catch(erro){
+
+            temMaisCodigo = false;
+
+        }
+
+
+        if(temMaisCodigo){
+            this.exibirLinhaHorizontal();
+
+            this.exibirBotaoCarregarMais();
+
+        }
+
 
     }
     
