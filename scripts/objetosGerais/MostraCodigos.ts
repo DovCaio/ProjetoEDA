@@ -46,6 +46,7 @@ export class MostraCodigos {
         let algoritimos: Object[] = await this.fazRequisicoes.fazRequisicao();
         this.fazRequisicoes.setIdNext();
 
+        if(algoritimos.length == 0) throw new Error("Não tem mais código!");
 
         algoritimos.forEach(element => {
 
