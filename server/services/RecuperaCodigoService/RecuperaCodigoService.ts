@@ -1,5 +1,5 @@
 
-import { RecuperaArquivos } from "./utils/RecuperaArquivo";
+import { RecuperaArquivos } from "../utils/RecuperaArquivo";
 
 
 /*
@@ -11,7 +11,7 @@ import { RecuperaArquivos } from "./utils/RecuperaArquivo";
 */
 
 
-export class RecuperaCodigo{
+export class RecuperaCodigoService{
 
     private diretorio: string;
 

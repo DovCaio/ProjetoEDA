@@ -1,3 +1,4 @@
+import { promises } from "dns";
 import * as fs from "fs";
 
 export class RecuperaDiretorio {
@@ -41,7 +42,7 @@ export class RecuperaDiretorio {
 
     }
 
-    public async procuraDiretorioCodigo() : Promise<string>{
+    private async procuraDiretorioCodigo() : Promise<string>{
 
         let resultado: string;
         let diretorios: string[] = [];
@@ -106,6 +107,39 @@ export class RecuperaDiretorio {
         return resultado;
 
     }
+
+
+    public async achaDiretorioPorNome(nomeArquivo:string): Promise<string>{
+
+        let resultado:string = "";
+        let diretorios: string[] = await this.lerDiretorios(this.diretorio); 
+
+        for(let i:number = 0; i < diretorios.length; i++){
+
+            let diretorio:string  = this.diretorio + diretorios[i];
+            let arquivos:string[] = await this.lerDiretorios(diretorio);
+
+            for(let j: number = 0; i < arquivos.length; j++){
+            
+                let diretorioArquivo = arquivos[j];
+
+                if (diretorioArquivo == nomeArquivo){
+
+                    resultado = diretorioArquivo;
+
+                }
+                
+
+            }
+
+        }
+
+        if(resultado == "") throw new Error("Não foi possível encontrar o arquivo. O nome do arquivo ou o diretorio passado está incorreto!");
+
+        return resultado;
+    }
+
+
 
     public setId(id:number):void{
 

@@ -1,11 +1,11 @@
 import * as express from 'express';
 import { Request, Response } from 'express';
-import { RecuperaCodigo } from "./services/RecuperaCodigo";
-
+import { RecuperaCodigoService } from "./services/RecuperaCodigoService/RecuperaCodigoService";
+import { ExecutaCodigoService } from './services/ExecutaCodigoService/ExecutaCodigoService';
 import * as cors from "cors";
 
-const recuperaCodigo: RecuperaCodigo = new RecuperaCodigo("", 0);
-
+const recuperaCodigoService: RecuperaCodigoService = new RecuperaCodigoService("", 0);
+const executaCodigoService: ExecutaCodigoService = new RecuperaCodigoService("", []);
 
 
 const app = express();
@@ -16,20 +16,23 @@ app.use(cors()); //Dessa forma permitimos que qualquer origem acessa a api
 // app.use(cors({ origin: 'http://192.168.0.104:8080' }));
 
 
+
+//Área RecuperCodigo
+
 app.get("/algoritmoBubbleSort/:id", async (req: Request, res: Response) => {
 
 
-    recuperaCodigo.setDiretorio("algoritimos/BubbleSort/");
+    recuperaCodigoService.setDiretorio("algoritimos/BubbleSort/");
     
     let idCodigo: number = parseInt(req.params.id);
     
-    recuperaCodigo.setQualCodigo(idCodigo);
+    recuperaCodigoService.setQualCodigo(idCodigo);
     
     let resposta: Object[] = [];
 
     try {
 
-        resposta = await recuperaCodigo.recupera() 
+        resposta = await recuperaCodigoService.recupera() 
 
     }catch(erro){
 
@@ -41,6 +44,8 @@ app.get("/algoritmoBubbleSort/:id", async (req: Request, res: Response) => {
 
 })
 
+
+//Área Executa Código
 
 
 
