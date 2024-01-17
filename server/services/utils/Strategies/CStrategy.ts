@@ -5,7 +5,9 @@ export class CStrategy implements Strategy{
 
     public executa(diretorioArquivo:string, dadosOrdenar: number[]): string{
 
-        return shell.exec("." + diretorioArquivo).stdout();
+
+        return shell.exec("." + diretorioArquivo + " " + dadosOrdenar.length + " " + dadosOrdenar.join(" "))
+            .stdout();
 
     }
 

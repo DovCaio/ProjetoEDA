@@ -5,7 +5,7 @@ import { ExecutaCodigoService } from './services/ExecutaCodigoService/ExecutaCod
 import * as cors from "cors";
 
 const recuperaCodigoService: RecuperaCodigoService = new RecuperaCodigoService("", 0);
-const executaCodigoService: ExecutaCodigoService = new RecuperaCodigoService("", []);
+
 
 
 const app = express();
@@ -46,6 +46,32 @@ app.get("/algoritmoBubbleSort/:id", async (req: Request, res: Response) => {
 
 
 //Área Executa Código
+
+app.get("/executaAlgoritmo", async (req:Request, res: Response) =>{
+
+    
+    let nomeCodigo: string  = req.body.nomeAlgoritmo;
+    let dadosAOrdenar: number[] = req.body.dadosOrdenar;
+    
+    let resultado: string = "";
+
+    try{
+        const executaCodigoService: ExecutaCodigoService = new ExecutaCodigoService(nomeCodigo, dadosAOrdenar);
+
+        executaCodigoService.setDiretorioPrincipal("./BubbleSort"); //transformar isso em uma forma dinâmica
+
+        resultado = await executaCodigoService.executa();
+    }catch(erro){
+
+        console.log(erro);
+
+
+    }
+
+    res.send(resultado);
+    
+
+})
 
 
 

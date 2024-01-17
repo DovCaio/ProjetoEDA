@@ -25,6 +25,15 @@ export class ExecutaCodigoService {
         
     }
 
+
+    /**
+     * O service deveria abstrair o controller de uma grande parte do funcionamento, em razão de ser usado
+     * uma função assincrona para encotrar o diretório do código, é necessário usarmos outra, para ser possível usar o awat
+     *  antes do executar para sertarmos o diretorio onde os códigos serão buscados.
+     * 
+     * @param diretorio Diretorio onde os códigos serão procurados.
+     * 
+     */
     public async setDiretorioPrincipal(diretorio:string):Promise<void>{
 
         this.recuperaDiretorio.setDiretorio(diretorio);
@@ -34,13 +43,27 @@ export class ExecutaCodigoService {
         this.executaCodigo.setDiretorio(diretorioOndeEstaOCodigo);
     }
 
+    public setNomeAlgoritmo(nome:string){
+
+        this.nomeAlgoritmo = nome;
+
+    }
+
+    public setDadosOrdenar(dados: number[]){
+
+        this.dadosOrdenar = dados;
+
+    }
+
     
     
     
     public async executa():Promise<string>{
         
-        if(this.diretorioPrincipal.split(".")[1] == "c") this.executaCodigo.setStrategy(new CStrategy());
-        else if (this.diretorioPrincipal.split(".")[1] == "java") this.executaCodigo.setStrategy(new JavaStrategy());
+        let linguagem: string = this.diretorioPrincipal.split(".")[1]; 
+
+        if(linguagem == "c") this.executaCodigo.setStrategy(new CStrategy());
+        else if (linguagem == "java") this.executaCodigo.setStrategy(new JavaStrategy());
         else throw new Error("Tipo de arquivo não compilável pelo servidor");
 
         return  this.executaCodigo.executa();
