@@ -108,7 +108,20 @@ export class RecuperaDiretorio {
 
     }
 
-
+    /**
+     * 
+     * Apartir do nome do arquivo o ele vai ler o diretório principal do algoritmo respectivo, 
+     * e para cada arquivo dentro de do principal ele vai procurar um, que coincida com o que está
+     * sendo buscado, caso encontre-o, será formado uma stringo que será o seu caminho, concatenando
+     * diretorio principal e diretorio da linguagem.
+     * 
+     * No caso dessa função o diretório principal é além de algoritmo, também o nome do algoritmo.
+     * 
+     * Caso não seja encontrado, será lançado um erro.
+     * 
+     * @param nomeArquivo nome do arquivo buscado
+     * @returns Caminho até o arquivo, se encontrado
+     */
     public async achaDiretorioPorNome(nomeArquivo:string): Promise<string>{
 
         let resultado:string = "";
@@ -124,7 +137,7 @@ export class RecuperaDiretorio {
                 let diretorioArquivo:string = arquivos[j];
 
                 if (diretorioArquivo == nomeArquivo){
-                    resultado = this.diretorio + "/" +diretorioArquivo;
+                    resultado = this.diretorio + "/" + diretorios[i] +"/" + diretorioArquivo;
                                         
                 }
                 
