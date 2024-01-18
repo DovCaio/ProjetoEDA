@@ -1,7 +1,8 @@
 
+import { stderr } from "process";
 import { Strategy } from "./Strategy";
 import * as shell from "shelljs"; //npm install --save-dev @types/shelljs para o ts
-
+import {CodigoExecutado} from "../../../objetos/CodigoExecutado";
 
 /**
  * 
@@ -13,19 +14,32 @@ import * as shell from "shelljs"; //npm install --save-dev @types/shelljs para o
  */
 export class CStrategy implements Strategy{
 
-    public executa(diretorioArquivo:string, dadosOrdenar: number[]): string{
+    public executa(diretorioArquivo:string, dadosOrdenar: number[]): CodigoExecutado{
 
-        let resultado: string = "";
+        let resultado: CodigoExecutado = {
 
+            tempo : "",
+            resultado: ""
+
+        };
         
         let comando : string = this.criaOComando(diretorioArquivo, dadosOrdenar);
         
-        console.log(comando);
-        
+        let tempoInicial: number = new Date().getTime();
+
         let execucao: object = shell.exec(comando); 
         
-        if(execucao["code"] == 1) resultado = execucao["stdout"];
-        else throw new Error("Erro ao executar o comando");
+        let tempoFinal: number = new Date().getTime();
+
+
+
+        if(execucao["code"] == 1) {
+         
+            resultado.resultado = execucao["stdout"];
+            resultado.tempo = (tempoFinal - tempoInicial) + "ms";
+            
+        }           
+        else throw new Error("Erro ao executar o comando " + execucao["stderr"]);
         
         
         return resultado;
@@ -44,17 +58,12 @@ export class CStrategy implements Strategy{
         let resultado: string = "";
 
         let direorioCForOUT:string = diretorioArquivo.split(".c")[0] + ".out"; 
-        
-        console.log(direorioCForOUT);
+
         resultado = direorioCForOUT + " " + dadosOrdenar.length + " " + dadosOrdenar.join(" ");
+
+        console.log(resultado);
+
         return resultado;
     }
 
 }
-
-
-
-
-
-
-//Referencia: https://rafaellaurindo.dev/blog/execute-comandos-no-sistema-com-javascript

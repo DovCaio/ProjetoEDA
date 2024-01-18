@@ -1,3 +1,4 @@
+import { CodigoExecutado } from "../../objetos/CodigoExecutado";
 import {ExecutaCodigo} from "../utils/ExecutaCodigo";
 import { RecuperaDiretorio } from "../utils/RecuperaDiretorio";
 import {CStrategy} from "../utils/Strategies/CStrategy";
@@ -59,7 +60,7 @@ export class ExecutaCodigoService {
     
     
     
-    public async executa():Promise<string>{
+    public async executa():Promise<CodigoExecutado>{
         
         let linguagem: string = this.nomeAlgoritmo.split(".")[1]; 
         if(linguagem == "c") this.executaCodigo.setStrategy(new CStrategy());

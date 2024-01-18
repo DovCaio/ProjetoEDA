@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { RecuperaCodigoService } from "./services/RecuperaCodigoService/RecuperaCodigoService";
 import { ExecutaCodigoService } from './services/ExecutaCodigoService/ExecutaCodigoService';
 import * as cors from "cors";
+import { CodigoExecutado } from './objetos/CodigoExecutado';
 
 const recuperaCodigoService: RecuperaCodigoService = new RecuperaCodigoService("", 0);
 
@@ -57,7 +58,12 @@ app.get("/executaAlgoritmo/:nomeDiretorioAlgortimo", async (req:Request, res: Re
     let dadosAOrdenar: number[] = req.body.dadosOrdenar;
     let nomeDiretorioAlgoritmo: string = req.params.nomeDiretorioAlgortimo;
 
-    let resultado: string = "";
+    let resultado: CodigoExecutado = {
+
+        tempo:"",
+        resultado:""
+
+    }
 
     const executaCodigoService: ExecutaCodigoService = new ExecutaCodigoService(nomeCodigo, dadosAOrdenar);  
     await executaCodigoService.setDiretorioPrincipal("./algoritimos/" + nomeDiretorioAlgoritmo);

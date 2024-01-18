@@ -1,4 +1,5 @@
 import { Strategy } from "./Strategies/Strategy";
+import {CodigoExecutado} from "../../objetos/CodigoExecutado";
 
 export class ExecutaCodigo{
 
@@ -16,7 +17,7 @@ export class ExecutaCodigo{
     }
 
 
-    public executa():string {
+    public executa():CodigoExecutado {
 
         return this.strategy.executa(this.diretorio, this.dadosOrdenar);
 
