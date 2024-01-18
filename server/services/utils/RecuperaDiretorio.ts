@@ -42,7 +42,7 @@ export class RecuperaDiretorio {
 
     }
 
-    private async procuraDiretorioCodigo() : Promise<string>{
+    public async procuraDiretorioCodigo() : Promise<string>{
 
         let resultado: string;
         let diretorios: string[] = [];
@@ -116,17 +116,16 @@ export class RecuperaDiretorio {
 
         for(let i:number = 0; i < diretorios.length; i++){
 
-            let diretorio:string  = this.diretorio + diretorios[i];
+            let diretorio:string  = this.diretorio + "/" +  diretorios[i];
             let arquivos:string[] = await this.lerDiretorios(diretorio);
 
-            for(let j: number = 0; i < arquivos.length; j++){
+            for(let j: number = 0; j < arquivos.length; j++){
             
-                let diretorioArquivo = arquivos[j];
+                let diretorioArquivo:string = arquivos[j];
 
                 if (diretorioArquivo == nomeArquivo){
-
-                    resultado = diretorioArquivo;
-
+                    resultado = this.diretorio + "/" +diretorioArquivo;
+                                        
                 }
                 
 

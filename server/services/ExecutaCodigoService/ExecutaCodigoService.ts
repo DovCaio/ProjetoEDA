@@ -39,7 +39,8 @@ export class ExecutaCodigoService {
         this.recuperaDiretorio.setDiretorio(diretorio);
         this.diretorioPrincipal = diretorio;
 
-        let diretorioOndeEstaOCodigo:string = await this.recuperaDiretorio.achaDiretorioPorNome(diretorio); 
+        let diretorioOndeEstaOCodigo:string = await this.recuperaDiretorio.achaDiretorioPorNome(this.nomeAlgoritmo); 
+        console.log(diretorioOndeEstaOCodigo);
         this.executaCodigo.setDiretorio(diretorioOndeEstaOCodigo);
     }
 
@@ -60,8 +61,7 @@ export class ExecutaCodigoService {
     
     public async executa():Promise<string>{
         
-        let linguagem: string = this.diretorioPrincipal.split(".")[1]; 
-
+        let linguagem: string = this.nomeAlgoritmo.split(".")[1]; 
         if(linguagem == "c") this.executaCodigo.setStrategy(new CStrategy());
         else if (linguagem == "java") this.executaCodigo.setStrategy(new JavaStrategy());
         else throw new Error("Tipo de arquivo não compilável pelo servidor");
