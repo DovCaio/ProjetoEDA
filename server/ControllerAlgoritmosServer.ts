@@ -4,6 +4,7 @@ import { RecuperaCodigoService } from "./services/RecuperaCodigoService/Recupera
 import { ExecutaCodigoService } from './services/ExecutaCodigoService/ExecutaCodigoService';
 import * as cors from "cors";
 import { CodigoExecutado } from './objetos/CodigoExecutado';
+import { Codigo } from './objetos/Codigo';
 
 const recuperaCodigoService: RecuperaCodigoService = new RecuperaCodigoService("", 0);
 
@@ -32,7 +33,7 @@ app.get("/algoritmoBubbleSort/:id", async (req: Request, res: Response) => {
     
     recuperaCodigoService.setQualCodigo(idCodigo);
     
-    let resposta: Object[] = [];
+    let resposta: Codigo[] = [];
 
     try {
 

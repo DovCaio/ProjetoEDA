@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { RecuperaDiretorio } from "./RecuperaDiretorio";
+import { Codigo } from "../../objetos/Codigo";
 
 export class RecuperaArquivos {
 
@@ -8,7 +9,7 @@ export class RecuperaArquivos {
     private recuperaDiretorio: RecuperaDiretorio;
 
     /**
-     * Todos os arquivos de código que tenham que ser lidos tem que ter sua extensão cadastrada aqui,
+     * Todos os arquivos de código que tenham que ser recuperados tem que ter sua extensão cadastrada aqui,
      * portanto tem que estar dentro dessa variável sua extensão.
      */
     private extenssaoArquivosEhCodigo: string[];
@@ -56,12 +57,20 @@ export class RecuperaArquivos {
     }
 
 
-    //Lê de forma sincrona.
-    private async lerArquivos(diretoriosArquivo: string[]): Promise<Object[]>{
+    /**
+     * Lê de forma sincrona, caso o arquivo seja um código, isso é detectado de acordo com as extessões
+     * do que é considerado código, então ele vai ser recuperad.
+     * 
+     * @param diretoriosArquivo Diretório onde se encontram os arquivos.
+     * 
+     * 
+     * @returns 
+     */
+    private async lerArquivos(diretoriosArquivo: string[]): Promise<Codigo[]>{
         
         return new Promise((resolve, reject) => {
 
-            let resposta: Object[] = [];
+            let resposta: Codigo[] = [];
 
             diretoriosArquivo.forEach(element => {
 
@@ -81,10 +90,10 @@ export class RecuperaArquivos {
 
                     let conteudo: string = fs.readFileSync(element, "utf-8");
     
-                    let codigo = {
+                    let codigo: Codigo = {
     
-                        "nome": nomeArquivo,
-                        "conteudo": conteudo
+                        nome: nomeArquivo,
+                        conteudo: conteudo
     
                     }
     
@@ -106,9 +115,9 @@ export class RecuperaArquivos {
     }
 
 
-    private async recuperaCodigos(diretorio: string): Promise<Object[]>{
+    private async recuperaCodigos(diretorio: string): Promise<Codigo[]>{
 
-        let resultado: Object[] = [];
+        let resultado: Codigo[] = [];
 
         let diretoriosASeremLidos: string[] = [];
 
@@ -132,9 +141,9 @@ export class RecuperaArquivos {
         return resultado;
     }
 
-    public async lerCodigos(): Promise<Object[]>{
+    public async lerCodigos(): Promise<Codigo[]>{
 
-        let resultado : Object[] = [];
+        let resultado : Codigo[] = [];
     
         let diretorioAProcurar: string = "";
 

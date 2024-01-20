@@ -1,4 +1,5 @@
 
+import { Codigo } from "../../objetos/Codigo";
 import { RecuperaArquivos } from "../utils/RecuperaArquivo";
 
 
@@ -30,9 +31,9 @@ export class RecuperaCodigoService{
     
 
     
-    public async recupera(): Promise<Object[]>{
+    public async recupera(): Promise<Codigo[]>{
 
-        let resultado: Object[] = [];
+        let resultado: Codigo[] = [];
 
 
         try{
