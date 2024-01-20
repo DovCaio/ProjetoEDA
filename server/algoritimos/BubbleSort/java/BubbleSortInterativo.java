@@ -17,20 +17,20 @@ public class BubbleSortInterativo {
 
         Integer[] resultado =  ordena(emInteiros);
 
-        String emString = "[";
+        String emString = "[ ";
 
         for (int i = 0; i < resultado.length; i++){
 
-            if(i != resultado.length - 1) emString = emString + resultado[i] + ", ";
+            if(i != resultado.length - 1) emString = emString + resultado[i] + " ";
             else emString = emString + resultado[i];
              
 
 
         }
 
-        emString = emString + "]";
+        emString = emString + " ]";
 
-        System.out.println(emString);
+        System.out.print(emString);
 
         System.exit(1);
     }

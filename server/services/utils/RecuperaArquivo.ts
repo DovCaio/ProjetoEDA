@@ -7,14 +7,54 @@ export class RecuperaArquivos {
     private id: number;
     private recuperaDiretorio: RecuperaDiretorio;
 
+    /**
+     * Todos os arquivos de código que tenham que ser lidos tem que ter sua extensão cadastrada aqui,
+     * portanto tem que estar dentro dessa variável sua extensão.
+     */
+    private extenssaoArquivosEhCodigo: string[];
 
     constructor(diretorio: string, id: number){
 
         this.diretorio = diretorio;
         this.id = id;
         this.recuperaDiretorio = new RecuperaDiretorio(diretorio, id);
+        this.extenssaoArquivosEhCodigo = ["c", "java"]
 
     }
+
+
+
+    /**
+     * 
+     * Verifica se um arquivo tem o tipo de exteção que seja um código, caso não o arquivo vai ser
+     * considerado um arquivo binário, por isso não vai ser recuperado para ser mostrado no site e
+     * so serve para executar o código.
+     * 
+     * @param nomeAquivo Nome do arquivo que possa ser um código.
+     * 
+     * @returns true para se o arquivo for um código, e false, caso contrário. 
+     */
+    private ehCodigo(nomeAquivo:string): boolean{
+
+        let resultado: boolean = false;
+
+        for(let i:number = 0; i < this.extenssaoArquivosEhCodigo.length; i++){
+
+
+            if(nomeAquivo.split(".")[1] == this.extenssaoArquivosEhCodigo[i]){
+
+                resultado = true;
+                break;
+
+            }
+
+        }
+
+        return resultado;
+
+
+    }
+
 
     //Lê de forma sincrona.
     private async lerArquivos(diretoriosArquivo: string[]): Promise<Object[]>{
@@ -37,16 +77,21 @@ export class RecuperaArquivos {
                 
                 let nomeArquivo: string = fazONome();
 
-                let conteudo: string = fs.readFileSync(element, "utf-8");
+                if (this.ehCodigo(nomeArquivo)){
 
-                let codigo = {
-
-                    "nome": nomeArquivo,
-                    "conteudo": conteudo
+                    let conteudo: string = fs.readFileSync(element, "utf-8");
+    
+                    let codigo = {
+    
+                        "nome": nomeArquivo,
+                        "conteudo": conteudo
+    
+                    }
+    
+                    resposta.push(codigo);
 
                 }
 
-                resposta.push(codigo);
 
 
             })
