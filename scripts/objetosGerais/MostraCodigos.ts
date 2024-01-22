@@ -8,14 +8,16 @@ export class MostraCodigos {
     private createElements: CreateElementos;
     private fazRequisicoes: RequsitaAlgoritmos;
     private ondeMostra: HTMLElement | null;
+    private tipoAlgoritmo: string;
 
-    constructor(url:string, id:number){
+    constructor(url:string, id:number, tipoAlgoritmo: string){
 
         this.fazRequisicoes = new RequsitaAlgoritmos(url, id);
         this.createElements = new CreateElementos();
 
         this.ondeMostra = document.getElementById("onde-imbui-elemento");
 
+        this.tipoAlgoritmo = tipoAlgoritmo;
     }
 
 
@@ -53,7 +55,7 @@ export class MostraCodigos {
             
             let valores : string[] = Object.values(element);
 
-            let elemento: HTMLElement = this.createElements.criarCaixaCodigo(valores[0], valores[1]);
+            let elemento: HTMLElement = this.createElements.criarCaixaCodigo(valores[0], valores[1], this.tipoAlgoritmo);
             
             this.colocaElementoNaPagina(elemento);
         })

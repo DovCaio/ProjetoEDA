@@ -1,3 +1,4 @@
+
 import {MostraCodigos} from "../objetosGerais/MostraCodigos.js"
 import { Algoritmo } from "./Algoritmo";
 
@@ -8,7 +9,7 @@ class BubbleSort implements Algoritmo{
 
     constructor(url: string, id: number){
 
-        this.mostraCodigos = new MostraCodigos(url, id);
+        this.mostraCodigos = new MostraCodigos(url, id, "BubbleSort");
 
     }
 
@@ -28,3 +29,4 @@ const bubbleSort = new BubbleSort("http://localhost:3000/algoritmoBubbleSort/", 
 document.body.onload = () => {
     bubbleSort.mostrar()
 };
+

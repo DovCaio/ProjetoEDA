@@ -52,12 +52,17 @@ app.get("/algoritmoBubbleSort/:id", async (req: Request, res: Response) => {
 
 //Área Executa Código
 
-app.get("/executaAlgoritmo/:nomeDiretorioAlgortimo", async (req:Request, res: Response) =>{
+app.post("/executaAlgoritmo/:nomeDiretorioAlgortimo", async (req:Request, res: Response) =>{
 
     
     let nomeCodigo: string  = req.body.nomeCodigo;
+
+    
+
     let dadosAOrdenar: number[] = req.body.dadosOrdenar;
+
     let nomeDiretorioAlgoritmo: string = req.params.nomeDiretorioAlgortimo;
+    console.log(dadosAOrdenar, nomeCodigo, nomeDiretorioAlgoritmo); 
 
     let resultado: CodigoExecutado = {
 
