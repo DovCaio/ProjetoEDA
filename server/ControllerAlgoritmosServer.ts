@@ -24,12 +24,15 @@ app.use(express.urlencoded({
 
 //Área RecuperCodigo
 
-app.get("/algoritmoBubbleSort/:id", async (req: Request, res: Response) => {
+app.get("/recuperaAlgoritmo/:diretorioAlgoritmo/:id", async (req: Request, res: Response) => {
 
-
-    recuperaCodigoService.setDiretorio("algoritimos/BubbleSort/");
+    let diretorioAlgoritmo: string = req.params.diretorioAlgoritmo;
     
+
+    recuperaCodigoService.setDiretorio("algoritimos/" + diretorioAlgoritmo + "/");
+
     let idCodigo: number = parseInt(req.params.id);
+    console.log(diretorioAlgoritmo, idCodigo);
     
     recuperaCodigoService.setQualCodigo(idCodigo);
     
@@ -37,7 +40,7 @@ app.get("/algoritmoBubbleSort/:id", async (req: Request, res: Response) => {
 
     try {
 
-        resposta = await recuperaCodigoService.recupera() 
+        resposta = await recuperaCodigoService.recupera();
 
     }catch(erro){
 

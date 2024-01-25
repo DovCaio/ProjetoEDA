@@ -10,9 +10,9 @@ export class MostraCodigos {
     private ondeMostra: HTMLElement | null;
     private tipoAlgoritmo: string;
 
-    constructor(url:string, id:number, tipoAlgoritmo: string){
+    constructor(id:number, tipoAlgoritmo: string){
 
-        this.fazRequisicoes = new RequsitaAlgoritmos(url, id);
+        this.fazRequisicoes = new RequsitaAlgoritmos(tipoAlgoritmo, id);
         this.createElements = new CreateElementos();
 
         this.ondeMostra = document.getElementById("onde-imbui-elemento");

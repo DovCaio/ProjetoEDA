@@ -3,22 +3,17 @@
 export class RequsitaAlgoritmos {
 
 
-    private url: string;
+    readonly url: string = "http://localhost:3000/recuperaAlgoritmo/";
     private id: number;
+    private algoritmo: string;
 
-    constructor(url: string, id:number){
+    constructor(algoritmo: string, id:number){
 
-        this.url = url;
+        this.algoritmo = algoritmo;
         this.id = id;
 
     }
 
-    public setUrl(url: string): void{
-
-        this.url = url;
-
-
-    }
 
     public setId(id:number): void{
 
@@ -34,8 +29,18 @@ export class RequsitaAlgoritmos {
     }
 
     public async fazRequisicao(): Promise<Object[]>{
+        let indentificacao = this.id;
+        console.log(indentificacao);
+        console.log(this.url + this.algoritmo);
+        return await fetch(this.url + this.algoritmo + "/" + this.id, {
 
-        return await fetch(this.url + this.id)
+            method: "GET",
+            headers:{
+                "Content-Type" : "application/json"
+            },
+
+
+        })
         .then(resposta => {
 
             if(!resposta.ok){
@@ -43,6 +48,7 @@ export class RequsitaAlgoritmos {
                 throw new Error("Erro de rede ou requisição falhou");
 
             }
+            console.log("oa");
 
             return resposta.json(); 
 
