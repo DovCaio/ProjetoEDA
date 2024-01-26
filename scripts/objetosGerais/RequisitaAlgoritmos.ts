@@ -29,9 +29,7 @@ export class RequsitaAlgoritmos {
     }
 
     public async fazRequisicao(): Promise<Object[]>{
-        let indentificacao = this.id;
-        console.log(indentificacao);
-        console.log(this.url + this.algoritmo);
+
         return await fetch(this.url + this.algoritmo + "/" + this.id, {
 
             method: "GET",
@@ -48,8 +46,6 @@ export class RequsitaAlgoritmos {
                 throw new Error("Erro de rede ou requisição falhou");
 
             }
-            console.log("oa");
-
             return resposta.json(); 
 
         })

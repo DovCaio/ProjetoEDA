@@ -60,8 +60,6 @@ export class CreateElementos {
 
         let executaAlgoritmos:ExecutaAlgoritmos = new ExecutaAlgoritmos(nomeAlgoritmo, tipoAlgoritmo);
 
-        console.log(input.value);
-
         let valores:string[] = input.value.split(", ");
 
         resultado = await executaAlgoritmos.requisita(valores);

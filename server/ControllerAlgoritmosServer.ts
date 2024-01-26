@@ -32,7 +32,6 @@ app.get("/recuperaAlgoritmo/:diretorioAlgoritmo/:id", async (req: Request, res: 
     recuperaCodigoService.setDiretorio("algoritimos/" + diretorioAlgoritmo + "/");
 
     let idCodigo: number = parseInt(req.params.id);
-    console.log(diretorioAlgoritmo, idCodigo);
     
     recuperaCodigoService.setQualCodigo(idCodigo);
     
@@ -65,8 +64,7 @@ app.post("/executaAlgoritmo/:nomeDiretorioAlgortimo", async (req:Request, res: R
     let dadosAOrdenar: number[] = req.body.dadosOrdenar;
 
     let nomeDiretorioAlgoritmo: string = req.params.nomeDiretorioAlgortimo;
-    console.log(dadosAOrdenar, nomeCodigo, nomeDiretorioAlgoritmo); 
-
+    
     let resultado: CodigoExecutado = {
 
         tempo:"",

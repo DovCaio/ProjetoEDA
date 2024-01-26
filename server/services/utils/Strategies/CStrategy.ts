@@ -61,7 +61,6 @@ export class CStrategy implements Strategy{
 
         resultado = direorioCForOUT + " " + dadosOrdenar.length + " " + dadosOrdenar.join(" ");
 
-        console.log(resultado);
 
         return resultado;
     }

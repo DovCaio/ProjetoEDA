@@ -41,7 +41,6 @@ export class ExecutaCodigoService {
         this.diretorioPrincipal = diretorio;
 
         let diretorioOndeEstaOCodigo:string = await this.recuperaDiretorio.achaDiretorioPorNome(this.nomeAlgoritmo); 
-        console.log(diretorioOndeEstaOCodigo);
         this.executaCodigo.setDiretorio(diretorioOndeEstaOCodigo);
     }
 

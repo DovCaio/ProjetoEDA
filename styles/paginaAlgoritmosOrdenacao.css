@@ -2,7 +2,22 @@
 
 main{
 
-    align-items: baseline;
+    align-items: flex-start;
     
+}
+
+div{
+    
+    display: flex;
+    flex-direction: column;    
+    width: 100%;
+
+}
+
+.gif-algoritmo{
+
+
+    height: 250px;
+    width: 280px;
 
 }

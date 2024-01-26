@@ -20,7 +20,6 @@ export class ExecutaAlgoritmos{
     public async requisita(dadosASeremProcessados:string[]): Promise<Object>{
 
         let nomeArquivo = this.nomeAlgoritmo;
-        console.log(nomeArquivo, dadosASeremProcessados);
         return await fetch(this.url + this.tipoAlgoritoms, {
 
             method: "POST",

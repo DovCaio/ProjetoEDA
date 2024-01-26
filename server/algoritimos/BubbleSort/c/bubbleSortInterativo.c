@@ -15,7 +15,7 @@ void printar(int*, int);
 
 int main(int argc, char* argv[]){
     
-    if(3 ==  3){
+    if(argc == 3){
 
 
         int qtd_itens = atoi(argv[1]);
