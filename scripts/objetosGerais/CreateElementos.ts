@@ -1,7 +1,10 @@
 import { ExecutaAlgoritmos } from "./ExecutaAlgoritmos.js";
 import { MostraCodigos } from "./MostraCodigos";
 
-
+/**
+ * Cria os elementos necessários para as funcionaldades mais dinâmicas do site.
+ * 
+ */
 export class CreateElementos {
 
     /**
@@ -137,6 +140,15 @@ export class CreateElementos {
     }
 
 
+    /**
+     * Cria a caixa onde o código dos algotimos vai ficar.
+     * 
+     * @param nomeAlgoritmo Nome que vai ser apresentado na parte superior, nome do arquivo.
+     * @param codigo Codigo do arquivo.
+     * @param tipoAlgoritmo É necessário saber qual tipo de algoritmo é, para fazer a requisição na hora
+     * de executar o código.
+     * @returns Ume elemento div, que envolve todos os elementos da caixa.
+     */
     public criarCaixaCodigo(nomeAlgoritmo: string, codigo: string, tipoAlgoritmo:string) : HTMLDivElement {
 
         let caixaPrincipal: HTMLDivElement = document.createElement("div");
@@ -157,12 +169,24 @@ export class CreateElementos {
 
     }
 
-
+    /**
+     * Cria o elemtno hr do html
+     * 
+     * @returns o elemnto hr. 
+     */
     public criaLinha(): HTMLHRElement{
 
         return document.createElement("hr");
     }
 
+
+    /**
+     * Cria o botão de carregar mais, o qual recebe no evento onclick o mostrar do mostraCodigo e remove o
+     * botão mostrar mais anterior.
+     *  
+     * @param mostraCodigos  Classe que carrega as funcionalidade necessárias para mostrar mais códigos e remover elemntos.
+     * @returns Um botão com texto: Carregar Mais, classe: button-carrega-mas e funcionlidades no onclick.
+     */
     public criarButtonCarregarMais(mostraCodigos: MostraCodigos): HTMLButtonElement{
 
         let botao = document.createElement("button");
