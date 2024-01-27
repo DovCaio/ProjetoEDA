@@ -20,7 +20,9 @@
     </header>
 
     <main>
-        <div id="bubblesort-algoritmo">
+
+        <div id="introducao-algoritmo">
+
             <p>
                 Algoritmo de ordenação é um conjunto instruções para ordenar um array. Podemos também ordenar
                 mais do que tipos númericos, podemos ordenar qualquer tipo de dado, se implementarmos uma codição
@@ -59,6 +61,11 @@
                 </ul>
     
             </ul>
+
+        </div>
+
+        <div id="bubblesort-algoritmo">
+            
     
             <h2>BubbleSort</h2>
     
@@ -90,9 +97,52 @@
             </p>
         </div>
 
-        <div id="">
+        <div id="selectionsort-algoritmo">
 
+            <h2>SelectionSort</h2>
 
+            <p>
+
+                É o algoritmo mais intuitivo, provalvelmente se você já teve que fazer um, ele deve ter sido
+                o selection sort.
+
+            </p>
+
+            <h3>Ideia principal do algoritmo</h3>
+
+            <p>
+                Percorre o array para descobrir qual é o menor elemento comparando com cada elemento no array,
+                assim caso encontre um elemento que seja menor do que o primeiro, que de início é 
+                considerado o menor, então ele passa a ser o menor, ate que se encontre outro, caso 
+                não seja encontrado outro, ele é o menor elemento, assim ao final dessa execução o menor
+                elemento encontrado vai assumir a primeira posição do array,
+            </p>
+
+            <h3>Usando a ideia principal para ordenar um array</h3>
+
+            <p>
+
+                Para ordenar um array, executamos essa ideia principal n vezes, sendo que em cada uma das
+                vezes o primeiro elemento vai ser outro, sempre sendo o próximo elemento.
+
+            </p>
+
+            <img src="../../imagens/Selection-Sort-Animation.gif" alt="gif que representa como funciona o selection sort" class="gif-algoritmo-selection-sort">
+
+            <cite>
+                <p>
+
+                    Git retirado da <a href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank">wikimedia</a>
+                    sobre a lincença <a href="https://pt.wikipedia.org/wiki/GNU_Free_Documentation_License" target="_blank">Licença de documentação livre</a>
+                    <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.pt">Atribuição-CompartilhaIgual 3.0 Não Adaptada.</a>
+
+                </p>
+            </cite>
+
+            <p>É in-place.</p>
+            <p>Complexidade: O(n<sup>2</sup>)</p>
+            <p>Não é estável</p>
+            <p>Implementação do <a href="algoritmosPage/selectionsort.html">SelectionSort</a>.</p>
         </div>
         
     </main>

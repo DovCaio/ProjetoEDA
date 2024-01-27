@@ -44,10 +44,4 @@ if(elemento != null){
         bubbleSort.mostrar()
     };
 
-}
-
-
-
-
-let colecao = document.getElementsByTagName("h1");
-colecao.item(0);
+}else throw new Error("Elemento div com id igual a nome-algoritmo, não encontrado!");
