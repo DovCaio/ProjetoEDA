@@ -17,7 +17,7 @@ class Algoritmo{
 
     constructor(algoritmo: string){
 
-        this.mostraCodigos = new MostraCodigos(1, "BubbleSort");
+        this.mostraCodigos = new MostraCodigos(1, algoritmo);
 
     }
 
