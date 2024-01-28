@@ -26,10 +26,15 @@
     
 }
 
+code{
+
+    text-transform: none;
+
+}
+
 .caixa-codigo > pre{
-
+    
     padding: 2%;
-
     
 
 }
@@ -55,7 +60,7 @@
 #onde-imbui-elemento{
 
     width: 100%;
-
+    
 }
 
 

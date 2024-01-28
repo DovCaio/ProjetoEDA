@@ -1,5 +1,4 @@
-Para compilar as funções juntamente com o código dos algoritmos usamos a pasta util que vai ter as funções util
-para cada linguagem dentro da pasta util. 
+# Para compilar as funções juntamente com o código dos algoritmos usamos a pasta util que vai ter as funções util para cada linguagem dentro da pasta util. 
 
 * Em c: tendo as funções definidas, o head no arquivo util.h e elas definidas em util.c, precisamos compilar o
 arquivo util.c com o comando gcc -c util.c -o util.out. Caso nenhuma nova dependencia seja criada não é necessário

@@ -193,7 +193,85 @@
             <p>A complexidade é O(n<sup>2</sup>)</p>
             <p>É estável</p>
 
-            <p>Implementação <a href="algoritmosPage/insertionsort.html">InseritionSort</a></p>
+            <p>Implementação <a href="algoritmosPage/insertionsort.html">InsertionSort</a></p>
+        </div>
+
+        <div id="mergesort-algoritmo">
+
+            <h2>MergeSort</h2>
+
+            <p>
+                É um algoritmo eficiente de ordenação por divisão e conquista, independentemente da 
+                organização do array o tempo que ele leva para ordenena-lo é &Theta;(n*logn).
+
+            </p>
+
+            <p>
+                O funcionamento do mergeSort basea-se em uma rotina chamada merge
+            </p>
+
+            <h3>Merge</h3>
+
+            <p>
+                É uma rotina que combina dois arrays ordenados em um outro também ordenado, porém 
+                não vamos criar um novo array, pois isso requer transferir os dados e isso custa 
+                memória e processamento, ao invés disso fazemos o merge de duas partes ordenadas de
+                um array, não um merge de dois arrays. 
+            </p>
+
+            <p>
+
+                O merge recebe o array, um indice left, right e middle, assim fazemos um array auxiliar,
+                que vai guardar a inteira parte a ser organizada, ou seja, do left até o right. Depois definimos
+                três indices que serão onde começa a primeira parte a ser organizada, i = left, a parte que termina essa
+                primeira parte é o próprio middle, o indice que começa a primeira parte, j = middle + 1, a parte que 
+                termina é o próprio right, e a última variável é a qual vai representar a respectiva posição que está 
+                sendo organizada, k = left, lembrando que os indices que começam as partes serão os que vão
+                ser incrementados a cada vez que um valor, a qual ele é indice do array auxiliar, i ou j, representa, for maior que o 
+                outro, ou seja quando compararmos no array auxiliar: array[i] > array[j], então o array indice j vai
+                ser incrementado, caso o array[i] seja menor, então ele vai ser incrementado além de que o valor que ocupar essa posição de menor vai ser colocado no 
+                array que está sendo ordenado e o indice que representa a respecitiva posição desse array, k, vai ser incrementado também.
+
+            </p>
+
+            <p>
+
+                Ao termino dessa execução, em muitos casos pode acabar por sobrar dados a serem incluidos do array auxiliar para o originial
+                em uma das partes, sendo assim precisamos colocar eles no array que esta sendo ordenado, para isso enquanto
+                a váriável que está menor que o limite de sua parte, i ou j, será colocado no array que está sendo ordenado,
+                e cada um dos indices será incrementado.
+
+            </p>
+
+            <h3>
+                Usando a ideia de merge para criar o MergeSort
+            </h3>
+
+            <p>
+                Recursivamente divimos o array em dois, até que em cada uma das duas partes tenha apenas dois elementos,
+                precisamos também que tudo isso seja feito na recursão, de modo que o merge seja aplicado primeiro nas partes
+                menores, só assim é possível fazer a ordenação.
+            </p>
+
+            <img src="../../imagens/Merge-sort-example-300px.gif" alt="gif que ilustra como funciona o merge sort"
+             class="gif-merge-sort">
+
+             <cite>
+
+                <p>
+                    Gif retirado da <a href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank">wikimedia</a>
+                    sobre a lincença <a href="https://en.wikipedia.org/wiki/en:Creative_Commons" target="_blank">Creative Commons</a>
+                     <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en" target="_blank">Attribution-Share Alike 3.0 Unported</a>
+                </p>   
+
+            </cite>
+
+            <p>Não é in-place.</p>
+            <p>A complexidade, como já mencionada, é: &Theta;(n*logn).</p>
+            <p>É estável.</p>
+
+            <p>Implementação <a href="./algoritmosPage/mergesort.html">MergeSort</a>.</p>
+
         </div>
         
     </main>
