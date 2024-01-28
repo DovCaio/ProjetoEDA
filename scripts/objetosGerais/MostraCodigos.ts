@@ -55,7 +55,10 @@ export class MostraCodigos {
             
             let valores : string[] = Object.values(element);
 
-            let elemento: HTMLElement = this.createElements.criarCaixaCodigo(valores[0], valores[1], this.tipoAlgoritmo);
+            let nomeAlgoritmo = valores[0];
+            let codigo = valores[1].replace(/</g, "&lt;").replace(/>/g, "&gt");
+            
+            let elemento: HTMLElement = this.createElements.criarCaixaCodigo(nomeAlgoritmo, codigo, this.tipoAlgoritmo);
             
             this.colocaElementoNaPagina(elemento);
         })
