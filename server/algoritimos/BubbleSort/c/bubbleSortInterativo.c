@@ -1,21 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "../../util/c/util.h"
 
 
 
 void bubbleSort(int*, int);
 
 
-int* transformaEmArray(int, char*[]);
 
-void swap(int*, int, int);
-
-void printar(int*, int);
 
 int main(int argc, char* argv[]){
     
-    if(argc == 3){
+    if(argc >= 3){
 
 
         int qtd_itens = atoi(argv[1]);
@@ -33,21 +29,6 @@ int main(int argc, char* argv[]){
     
 }
 
-
-int* transformaEmArray(int tamanho, char * valores[]){
-
-    int* array = (int*) malloc(tamanho * sizeof(int)); 
-
-    int j = 1;
-    for (int i = 0; i < tamanho; i++){
-
-        array[i] = atoi(valores[i + 2]);
-            
-    }
-
-    return (int*) array;
-
-}
 
 
 void bubbleSort(int* array, int tamanho){
@@ -72,26 +53,5 @@ void bubbleSort(int* array, int tamanho){
     }
     
 
-
-}
-
-void swap(int* array, int i, int j){
-
-    int aux = array[i];
-    array[i] = array[j];
-    array[j] = aux;
-
-
-}
-
-void printar(int* valores, int tamanho){
-
-    printf("[ ");
-    for(int i = 0; i < tamanho; i++){
-        
-        printf("%d ", valores[i]);
-
-    }
-    printf("]");
 
 }
