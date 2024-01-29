@@ -25,18 +25,23 @@ export class CStrategy implements Strategy{
         
         let comando : string = this.criaOComando(diretorioArquivo, dadosOrdenar);
         
-        let tempoInicial: number = new Date().getTime();
-
-        let execucao: object = shell.exec(comando); 
         
-        let tempoFinal: number = new Date().getTime();
 
-
-
+        let execucao: object = shell.exec(comando, {silent: true}); //Esse silent impede que haja uma saida no nosso terminal
+        
+        
+        
         if(execucao["code"] == 1) {
-         
-            resultado.resultado = execucao["stdout"];
-            resultado.tempo = (tempoFinal - tempoInicial) + "ms";
+
+            //pega o tempo em que o algoritmo levou para trazer seu resultado.
+            let tempoExecucaoUsado = execucao["stderr"].split("\n")[1]; //A saída padrão para o programa time é a saida de erro.
+
+            resultado = {
+
+                resultado: execucao["stdout"],
+                tempo: tempoExecucaoUsado
+
+            }
             
         }           
         else throw new Error("Erro ao executar o comando " + execucao["stderr"]);
@@ -59,7 +64,7 @@ export class CStrategy implements Strategy{
 
         let direorioCForOUT:string = diretorioArquivo.split(".c")[0] + ".out"; 
 
-        resultado = direorioCForOUT + " " + dadosOrdenar.length + " " + dadosOrdenar.join(" ");
+        resultado = `bash -c "time ${direorioCForOUT} ${dadosOrdenar.length} ${dadosOrdenar.join(' ')}"`;
 
 
         return resultado;

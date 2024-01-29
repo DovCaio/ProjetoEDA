@@ -16,15 +16,20 @@ export class JavaStrategy implements Strategy{
 
         let comando:string = this.criaComando(diretorioArquivo, dadosOrdenar);
 
-        let tempoInicial:number = new Date().getTime();
+        let execucao:object = shell.exec(comando, {silent: true});
 
-        let execucao:object = shell.exec(comando);
-
-        let tempoFinal:number = new Date().getTime();
 
         if (execucao["code"] == 1){
-            resultado.resultado = execucao["stdout"];
-            resultado.tempo = (tempoFinal - tempoInicial) + "ms";
+
+            let tempoExecucao = execucao["stderr"].split("\n")[1];
+
+            resultado = {
+
+                resultado : execucao["stdout"],
+                tempo: tempoExecucao
+
+            }
+
 
         }else throw new Error("Erro na execucao" + execucao["stderr"]);
     
@@ -52,8 +57,7 @@ export class JavaStrategy implements Strategy{
 
 
 
-        let resultado:string = "java" + " " + "-cp" + " " + diretorioExecutar + " " + arquivo + " " +
-             dadosOrdenar.join(" ");
+        let resultado:string = `bash -c "time java -cp ${diretorioExecutar} ${arquivo} ${dadosOrdenar.join(' ')}"`;
 
         return resultado
 
